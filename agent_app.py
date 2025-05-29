@@ -191,8 +191,7 @@ def analyze_article_multimodal(entry):
         return analysis_results
 
     # --- Text Analysis --- #
-    combined_prompt = f"Analyze the following news article text. Provide the output as a JSON object with three keys: \"summary\", \"sentiment\", and \"entities\".\n\n1.  **summary**: Provide a concise summary (2-3 sentences) of the key information.\n2.  **sentiment**: Classify the overall sentiment as strictly one of: \"Positive\", \"Negative\", or \"Neutral\".\n3.  **entities**: Extract key named entities (people, organizations, locations) mentioned. Return them as a list of strings.\n\nArticle Text:\n---\n{text_to_analyze}
----"
+    combined_prompt = f"Analyze the following news article text. Provide the output as a JSON object with three keys: \"summary\", \"sentiment\", and \"entities\".\n\n1.  **summary**: Provide a concise summary (2-3 sentences) of the key information.\n2.  **sentiment**: Classify the overall sentiment as strictly one of: \"Positive\", \"Negative\", or \"Neutral\".\n3.  **entities**: Extract key named entities (people, organizations, locations) mentioned. Return them as a list of strings.\n\nArticle Text:\n---\n{text_to_analyze}---"
     analysis_json_str = generate_with_gemini([combined_prompt], is_json_output=True)
 
     if analysis_json_str.startswith("An error occurred") or analysis_json_str.startswith("Content generation") or analysis_json_str.startswith("Error:"):
